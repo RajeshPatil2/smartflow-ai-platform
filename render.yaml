@@ -6,8 +6,6 @@ services:
     dockerfilePath: ./service-registry/Dockerfile
     dockerContext: .
     rootDir: service-registry
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/service-registry-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_HOSTNAME
         value: smartflow-service-registry.onrender.com
@@ -21,8 +19,6 @@ services:
     dockerfilePath: ./api-gateway/Dockerfile
     dockerContext: .
     rootDir: api-gateway
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/api-gateway-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -36,8 +32,6 @@ services:
     dockerfilePath: ./user-service/Dockerfile
     dockerContext: .
     rootDir: user-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/user-service-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -59,8 +53,6 @@ services:
     dockerfilePath: ./project-service/Dockerfile
     dockerContext: .
     rootDir: project-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/project-service-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -78,8 +70,6 @@ services:
     dockerfilePath: ./task-service/Dockerfile
     dockerContext: .
     rootDir: task-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/task-service-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -97,8 +87,6 @@ services:
     dockerfilePath: ./risk-service/Dockerfile
     dockerContext: .
     rootDir: risk-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/risk-service-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -116,8 +104,6 @@ services:
     dockerfilePath: ./ai-insights-service/Dockerfile
     dockerContext: .
     rootDir: ai-insights-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/ai-insights-service-0.0.1-SNAPSHOT.jar
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/

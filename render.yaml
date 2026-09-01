@@ -108,8 +108,9 @@ services:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
 
-  - type: static_site
+  - type: web
     name: smartflow-frontend
+    env: static
     rootDir: angular-frontend
     buildCommand: npm install && npm run build -- --configuration production
     staticPublishPath: dist/angular-frontend/browser

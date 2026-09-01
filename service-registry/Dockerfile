@@ -14,4 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/service-registry/target/service-registry-0.0.1-SNAPSHOT.jar app.jar
 
-CMD ["java", "-jar", "app.jar"]
+EXPOSE 8761
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

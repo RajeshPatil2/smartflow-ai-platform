@@ -1,106 +1,154 @@
 services:
+
+  # =========================================================
+  # 1. SERVICE REGISTRY - EUREKA SERVER
+  # =========================================================
   - type: web
     name: smartflow-service-registry
     env: docker
     plan: free
-    rootDir: service-registry
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./service-registry/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_HOSTNAME
         value: smartflow-service-registry.onrender.com
+
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
 
+
+  # =========================================================
+  # 2. API GATEWAY
+  # =========================================================
   - type: web
     name: smartflow-api-gateway
     env: docker
     plan: free
-    rootDir: api-gateway
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./api-gateway/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
+
       - key: FRONTEND_URL
         value: https://smartflow-frontend.onrender.com
 
+
+  # =========================================================
+  # 3. USER SERVICE
+  # =========================================================
   - type: web
     name: smartflow-user-service
     env: docker
     plan: free
-    rootDir: user-service
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./user-service/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
+
       - key: DATABASE_URL
         sync: false
+
       - key: DATABASE_USERNAME
         sync: false
+
       - key: DATABASE_PASSWORD
         sync: false
+
       - key: JWT_SECRET
         generateValue: true
+
       - key: JWT_EXPIRATION
         value: "86400000"
 
+
+  # =========================================================
+  # 4. PROJECT SERVICE
+  # =========================================================
   - type: web
     name: smartflow-project-service
     env: docker
     plan: free
-    rootDir: project-service
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./project-service/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
+
       - key: DATABASE_URL
         sync: false
+
       - key: DATABASE_USERNAME
         sync: false
+
       - key: DATABASE_PASSWORD
         sync: false
 
+
+  # =========================================================
+  # 5. TASK SERVICE
+  # =========================================================
   - type: web
     name: smartflow-task-service
     env: docker
     plan: free
-    rootDir: task-service
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./task-service/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
+
       - key: DATABASE_URL
         sync: false
+
       - key: DATABASE_USERNAME
         sync: false
+
       - key: DATABASE_PASSWORD
         sync: false
 
+
+  # =========================================================
+  # 6. RISK SERVICE
+  # =========================================================
   - type: web
     name: smartflow-risk-service
     env: docker
     plan: free
-    rootDir: risk-service
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./risk-service/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
+
       - key: DATABASE_URL
         sync: false
+
       - key: DATABASE_USERNAME
         sync: false
+
       - key: DATABASE_PASSWORD
         sync: false
 
+
+  # =========================================================
+  # 7. AI INSIGHTS SERVICE
+  # =========================================================
   - type: web
     name: smartflow-ai-insights-service
     env: docker
     plan: free
-    rootDir: ai-insights-service
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./ai-insights-service/Dockerfile
+    dockerContext: .
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
 
+
+  # =========================================================
+  # 8. ANGULAR FRONTEND
+  # =========================================================
   - type: web
     name: smartflow-frontend
     env: static

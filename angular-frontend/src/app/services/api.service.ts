@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, tap, of } from 'rxjs';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { User, AuthResponse, Project, TaskItem, RiskItem, AiInsight } from '../models/models';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { User, AuthResponse, Project, TaskItem, RiskItem, AiInsight } from '../m
 })
 export class ApiService {
 
-  private gatewayUrl = 'http://localhost:8080/api';
+  private gatewayUrl = environment.apiUrl;
   private currentUserSubject = new BehaviorSubject<User | null>(this.getStoredUser());
   public currentUser$ = this.currentUserSubject.asObservable();
 

@@ -1,0 +1,119 @@
+services:
+  - type: web
+    name: smartflow-service-registry
+    env: java
+    plan: free
+    rootDir: service-registry
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/service-registry-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_HOSTNAME
+        value: smartflow-service-registry.onrender.com
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+
+  - type: web
+    name: smartflow-api-gateway
+    env: java
+    plan: free
+    rootDir: api-gateway
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/api-gateway-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+      - key: FRONTEND_URL
+        value: https://smartflow-frontend.onrender.com
+
+  - type: web
+    name: smartflow-user-service
+    env: java
+    plan: free
+    rootDir: user-service
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/user-service-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: "86400000"
+
+  - type: web
+    name: smartflow-project-service
+    env: java
+    plan: free
+    rootDir: project-service
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/project-service-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+
+  - type: web
+    name: smartflow-task-service
+    env: java
+    plan: free
+    rootDir: task-service
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/task-service-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+
+  - type: web
+    name: smartflow-risk-service
+    env: java
+    plan: free
+    rootDir: risk-service
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/risk-service-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+
+  - type: web
+    name: smartflow-ai-insights-service
+    env: java
+    plan: free
+    rootDir: ai-insights-service
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/ai-insights-service-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: EUREKA_SERVER_URL
+        value: https://smartflow-service-registry.onrender.com/eureka/
+
+  - type: static
+    name: smartflow-frontend
+    env: static
+    rootDir: angular-frontend
+    buildCommand: npm install && npm run build -- --configuration production
+    staticPublishPath: dist/angular-frontend/browser
+    envVars:
+      - key: API_URL
+        value: https://smartflow-api-gateway.onrender.com/api

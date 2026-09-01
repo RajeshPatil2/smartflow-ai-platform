@@ -1,8 +1,10 @@
 services:
   - type: web
     name: smartflow-service-registry
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./service-registry/Dockerfile
+    dockerContext: .
     rootDir: service-registry
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/service-registry-0.0.1-SNAPSHOT.jar
@@ -14,8 +16,10 @@ services:
 
   - type: web
     name: smartflow-api-gateway
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./api-gateway/Dockerfile
+    dockerContext: .
     rootDir: api-gateway
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/api-gateway-0.0.1-SNAPSHOT.jar
@@ -27,8 +31,10 @@ services:
 
   - type: web
     name: smartflow-user-service
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./user-service/Dockerfile
+    dockerContext: .
     rootDir: user-service
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/user-service-0.0.1-SNAPSHOT.jar
@@ -48,8 +54,10 @@ services:
 
   - type: web
     name: smartflow-project-service
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./project-service/Dockerfile
+    dockerContext: .
     rootDir: project-service
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/project-service-0.0.1-SNAPSHOT.jar
@@ -65,8 +73,10 @@ services:
 
   - type: web
     name: smartflow-task-service
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./task-service/Dockerfile
+    dockerContext: .
     rootDir: task-service
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/task-service-0.0.1-SNAPSHOT.jar
@@ -82,8 +92,10 @@ services:
 
   - type: web
     name: smartflow-risk-service
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./risk-service/Dockerfile
+    dockerContext: .
     rootDir: risk-service
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/risk-service-0.0.1-SNAPSHOT.jar
@@ -99,8 +111,10 @@ services:
 
   - type: web
     name: smartflow-ai-insights-service
-    env: java
+    env: docker
     plan: free
+    dockerfilePath: ./ai-insights-service/Dockerfile
+    dockerContext: .
     rootDir: ai-insights-service
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/ai-insights-service-0.0.1-SNAPSHOT.jar

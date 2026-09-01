@@ -3,9 +3,8 @@ services:
     name: smartflow-service-registry
     env: docker
     plan: free
-    dockerfilePath: ./service-registry/Dockerfile
-    dockerContext: .
     rootDir: service-registry
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_HOSTNAME
         value: smartflow-service-registry.onrender.com
@@ -16,9 +15,8 @@ services:
     name: smartflow-api-gateway
     env: docker
     plan: free
-    dockerfilePath: ./api-gateway/Dockerfile
-    dockerContext: .
     rootDir: api-gateway
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -29,9 +27,8 @@ services:
     name: smartflow-user-service
     env: docker
     plan: free
-    dockerfilePath: ./user-service/Dockerfile
-    dockerContext: .
     rootDir: user-service
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -50,9 +47,8 @@ services:
     name: smartflow-project-service
     env: docker
     plan: free
-    dockerfilePath: ./project-service/Dockerfile
-    dockerContext: .
     rootDir: project-service
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -67,9 +63,8 @@ services:
     name: smartflow-task-service
     env: docker
     plan: free
-    dockerfilePath: ./task-service/Dockerfile
-    dockerContext: .
     rootDir: task-service
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -84,9 +79,8 @@ services:
     name: smartflow-risk-service
     env: docker
     plan: free
-    dockerfilePath: ./risk-service/Dockerfile
-    dockerContext: .
     rootDir: risk-service
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
@@ -101,9 +95,8 @@ services:
     name: smartflow-ai-insights-service
     env: docker
     plan: free
-    dockerfilePath: ./ai-insights-service/Dockerfile
-    dockerContext: .
     rootDir: ai-insights-service
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EUREKA_SERVER_URL
         value: https://smartflow-service-registry.onrender.com/eureka/
